@@ -3,7 +3,7 @@
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
+  <% @user.events.each do |event| %>
+    <p><%= event %> </p>
+  <% end %>
 </p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

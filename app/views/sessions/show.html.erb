@@ -1,4 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_session_path(@session) %> |
-<%= link_to 'Back', sessions_path %>
+<p>
+  <strong>Name:</strong>
+  <%= welcome @user.name %>
+</p>

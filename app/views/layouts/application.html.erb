@@ -9,6 +9,11 @@
   </head>
 
   <body>
+  <% if @_current_user %>
+  <p class="display text-center">
+  <%= logged_in_user @_current_user.name %>
+  </p>
+  <% end %>
     <%= yield %>
   </body>
 </html>
