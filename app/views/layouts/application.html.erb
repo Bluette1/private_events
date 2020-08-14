@@ -9,9 +9,15 @@
   </head>
 
   <body>
-  <% if @_current_user %>
+  <% if flash[:notice] %>
+  <p id="notice" class="text-center"><%= notice %></p>
+  <% end %>
+  <% if @current_user %>
   <p class="display text-center">
-  <%= logged_in_user @_current_user.name %>
+  <%= logged_in_user %>
+  </p>
+  <p>
+    <%= link_to "Sign Out", sign_out_path, method: :delete, class: "btn" %> 
   </p>
   <% end %>
     <%= yield %>
