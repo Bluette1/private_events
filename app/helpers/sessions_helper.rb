@@ -1,5 +1,5 @@
 module SessionsHelper
-  def  welcome(user)
-    "Nice to see you again, " << user << "!"
+  def welcome
+    "Nice to see you again, " << @current_user.name << "!"
   end
 end

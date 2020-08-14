@@ -16,10 +16,12 @@
   <p class="display text-center">
   <%= logged_in_user %>
   </p>
+ <br/>
+  <% end %>
+    <%= yield %>
+    <br/>
   <p>
     <%= link_to "Sign Out", sign_out_path, method: :delete, class: "btn" %> 
   </p>
-  <% end %>
-    <%= yield %>
   </body>
 </html>
