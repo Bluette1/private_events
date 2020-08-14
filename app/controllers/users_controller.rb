@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show]
+  before_action :set_current_user, only: [:show]
 
   # GET /users
   # GET /users.json
   def index
     @users = User.all
-    
   end
 
   # GET /users/1
@@ -67,6 +67,10 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def set_current_user
+      @current_user = current_user
     end
 
     # Only allow a list of trusted parameters through.
