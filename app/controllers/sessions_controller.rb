@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
   # GET /sessions/1
   # GET /sessions/1.json
   def show
-   
   end
 
   # GET /sessions/new
