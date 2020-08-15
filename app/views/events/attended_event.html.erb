@@ -2,7 +2,7 @@
 
  <% @events.each do |event| %> 
   <%= check_box_tag "event_ids[]", event.id, false %> 
-  <%= event.description %><br/>
+  <%= event.description %> <%= event.date %><br/>
 <% end %>
 <br/>
 

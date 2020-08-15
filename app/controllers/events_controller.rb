@@ -47,7 +47,16 @@ class EventsController < ApplicationController
     event_ids = params[:event_ids]
     attended_events = event_ids.collect { |id| Event.find(id) }
     @current_user.attended_events = attended_events
-    @current_user.save
+    # @current_user.save
+    respond_to do |format|
+      if @current_user.save
+        format.html { redirect_to user_path(@current_user), notice: 'Attended events were successfully added.' }
+        format.json { render user_path, status: "events added", location: @current_user}
+      else
+        format.html { render attended_events_path }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /events/1
@@ -92,6 +101,6 @@ class EventsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def event_params
-    params.require(:event).permit(:description)
+    params.require(:event).permit(:description, :date)
   end
 end

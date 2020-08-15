@@ -4,17 +4,15 @@ class User < ApplicationRecord
   has_many :attended_events, through: :event_attendances
 
   def upcoming_events
-    upcoming_events = []
-    self.attended_events.collect do |event|
-      upcoming_events << event if event.date >= Date.today
+     upcoming_events = self.attended_events.find_all do |event|
+      event.date >= Date.today
     end
     upcoming_events
   end
 
   def previous_events
-    previous_events = []
-    self.attended_events.collect do |event|
-      previous_events << event if event.date < Date.today
+    previous_events = self.attended_events.find_all do |event|
+      event.date < Date.today
     end
     previous_events
   end
