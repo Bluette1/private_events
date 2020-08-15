@@ -11,6 +11,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @upcoming_events = @current_user.upcoming_events
+    @previous_events = @current_user.previous_events
   end
 
   # GET /users/new
@@ -75,6 +77,6 @@ class UsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:name)
+    params.require(:user).permit(:name, :attended_events)
   end
 end

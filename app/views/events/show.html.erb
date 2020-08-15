@@ -9,4 +9,13 @@
   <%= @creator.name %>
 </p>
 
+<p>
+  <strong>Attendees:</strong><br/>
+  <% @event.attendees.each do |attendee| %>
+  <li>
+  <%= attendee.name %>
+  </li>
+  <% end %>
+</p>
+
 <%= link_to 'Back', events_path %>

@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :set_current_user, only: [:create, :show]
+  before_action :set_current_user, only: [:create, :show, :add_attended_event]
 
   # GET /events
   # GET /events.json
@@ -39,6 +39,17 @@ class EventsController < ApplicationController
     end
   end
 
+  def attended_event
+    @events = Event.all
+  end
+
+  def add_attended_event
+    event_ids = params[:event_ids]
+      attended_events = event_ids.collect { |id| Event.find(id) }
+      @current_user.attended_events = attended_events
+      @current_user.save
+  end
+
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
@@ -75,11 +86,13 @@ class EventsController < ApplicationController
   end
 
   def set_current_user
-    @current_user = current_user
+  redirect_to sign_in_path if current_user.nil? 
+  @current_user = current_user
   end
 
   # Only allow a list of trusted parameters through.
   def event_params
     params.require(:event).permit(:description)
   end
+
 end
