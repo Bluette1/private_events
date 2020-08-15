@@ -51,7 +51,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @current_user.save
         format.html { redirect_to user_path(@current_user), notice: 'Attended events were successfully added.' }
-        format.json { render user_path, status: "events added", location: @current_user}
+        format.json { render user_path, status: "events added", location: @current_user }
       else
         format.html { render attended_events_path }
         format.json { render json: @event.errors, status: :unprocessable_entity }
