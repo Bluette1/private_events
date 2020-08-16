@@ -1,6 +1,6 @@
 module ApplicationHelper
   def logged_in_user
-    "Logged_in user: "
+    'Logged_in user: '
   end
 
   def current_user_name

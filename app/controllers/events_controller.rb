@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :set_current_user, only: [:create, :show, :add_attended_event]
+  before_action :set_event, only: %i[show edit update destroy]
+  before_action :set_current_user, only: %i[create show add_attended_event]
 
   # GET /events
   # GET /events.json
@@ -22,8 +22,7 @@ class EventsController < ApplicationController
   end
 
   # GET /events/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /events
   # POST /events.json
@@ -53,7 +52,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @current_user.save
         format.html { redirect_to user_path(@current_user), notice: 'Attended events were successfully added.' }
-        format.json { render user_path, status: "events added", location: @current_user }
+        format.json { render user_path, status: 'events added', location: @current_user }
       else
         format.html { render attended_events_path }
         format.json { render json: @event.errors, status: :unprocessable_entity }

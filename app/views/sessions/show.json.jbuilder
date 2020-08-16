@@ -1,1 +1,1 @@
-json.partial! "sessions/session", session: @user
+json.partial! 'sessions/session', session: @user

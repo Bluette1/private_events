@@ -1,13 +1,11 @@
 class SessionsController < ApplicationController
-  before_action :set_current_user, only: [:show]
+  before_action :current_user, only: [:show]
   # GET /sessions/1
   # GET /sessions/1.json
-  def show
-  end
+  def show; end
 
   # GET /sessions/new
-  def new
-  end
+  def new; end
 
   # POST /sessions
   # POST /sessions.json
@@ -23,7 +21,7 @@ class SessionsController < ApplicationController
         format.json { render @user, status: :'logged in' }
       else
         format.html { render :new }
-        format.json { render json: { error: "failed login" }, status: :unprocessable_entity }
+        format.json { render json: { error: 'failed login' }, status: :unprocessable_entity }
       end
     end
   end
@@ -40,7 +38,7 @@ class SessionsController < ApplicationController
 
   private
 
-  def set_current_user
+  def current_user
     @current_user ||= session[:current_user_id] &&
                       User.find_by(id: session[:current_user_id])
   end
