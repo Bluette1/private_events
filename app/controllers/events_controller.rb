@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
-  before_action :set_current_user, only: %i[create show add_attended_event]
+  before_action :set_current_user, only: %i[create show attended_event add_attended_event index new]
 
   # GET /events
   # GET /events.json
