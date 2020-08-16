@@ -71,6 +71,7 @@ class UsersController < ApplicationController
   end
 
   def set_current_user
+    redirect_to sign_in_path if current_user.nil?
     @current_user = current_user
   end
 
