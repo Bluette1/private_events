@@ -1,5 +1,4 @@
 <div>
-  <p id="notice"><%= notice %></p>
   <p>
     <strong>Name:</strong>
     <%= @user.name %>
@@ -21,7 +20,7 @@
     <% end %>
   </p>
   <p>
-    <strong>Upcoming Events:</strong><br/>
+    <strong>Upcoming Events Attended:</strong><br/>
     <% @upcoming_events.each do |event| %>
       <li>
         <%= link_to event.description, event_path(event) %>
@@ -29,7 +28,7 @@
     <% end %>
   </p>
   <p>
-    <strong>Previous Events:</strong><br/>
+    <strong>Previous Events Attended:</strong><br/>
     <% @previous_events.each do |event| %>
       <li>
         <%= link_to event.description, event_path(event) %>

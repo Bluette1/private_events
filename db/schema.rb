@@ -22,18 +22,20 @@ ActiveRecord::Schema.define(version: 20200814134252) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.date "date"
+    t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "creator_id"
     t.text "description"
     t.index ["creator_id"], name: "index_events_on_creator_id"
+    t.index ["description"], name: "index_events_on_description", unique: true
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_users_on_name", unique: true
   end
 
 end

@@ -16,11 +16,10 @@ class SessionsController < ApplicationController
 
     respond_to do |format|
       if @user
-
         format.html { redirect_to signed_in_path, notice: 'You have successfully logged in' }
         format.json { render @user, status: :'logged in' }
       else
-        format.html { render :new }
+        format.html { redirect_to sign_in_url, notice: 'Wrong name. Sign up or enter the correct name' }
         format.json { render json: { error: 'failed login' }, status: :unprocessable_entity }
       end
     end
