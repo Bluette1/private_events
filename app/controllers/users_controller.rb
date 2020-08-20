@@ -75,6 +75,11 @@ class UsersController < ApplicationController
     @current_user = current_user
   end
 
+  def current_user
+    @current_user ||= session[:current_user_id] &&
+                      User.find_by(id: session[:current_user_id])
+  end
+
   # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:name, :attended_events)

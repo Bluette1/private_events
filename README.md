@@ -12,7 +12,7 @@ PROJECT: ASSOCIATIONS](https://www.theodinproject.com/courses/ruby-on-rails/less
 - Rails
 
 ## Description
-- On this site, users can create events and manage user signups. Users can also send invitations and parties.
+- On this site, registered users can create events and signup for existing events. 
 - The Rails framework was used to build this project.
 
 ## Live Demo
@@ -29,9 +29,8 @@ PROJECT: ASSOCIATIONS](https://www.theodinproject.com/courses/ruby-on-rails/less
 
 ### How to use the site
 Make sure the server is running
-- Go to http://localhost:3000/ in your web browser
-- You will be able to access the following routes (among others)
-- Follow the links on the site to access the available features, including sign up and sign in functionality.
+- Go to http://localhost:3000/ in your web browser.
+- Follow the navigation links on the site to access the available features, including sign up and sign in functionality.
 
 ## Deployment
 - You can deploy on [Heroku](https://devcenter.heroku.com/categories/ruby-support).
@@ -44,7 +43,7 @@ Make sure the server is running
 - Linkedin: [Marylene Sawyer](https://www.linkedin.com/in/marylene-sawyer)
 
 # Acknowledgements
-- [The Devise Gem](https://github.com/heartcombo/devise)
+- [Rails Guides](https://guides.rubyonrails.org)
 
 ## 🤝 Contributing
 

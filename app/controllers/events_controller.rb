@@ -48,7 +48,7 @@ class EventsController < ApplicationController
     event_ids = params[:event_ids]
     attended_events = event_ids.collect { |id| Event.find(id) }
     @current_user.attended_events = attended_events
-    # @current_user.save
+
     respond_to do |format|
       if @current_user.save
         format.html { redirect_to user_path(@current_user), notice: 'Attended events were successfully added.' }
