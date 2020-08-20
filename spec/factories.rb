@@ -1,6 +1,5 @@
-# This will guess the User class
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
-    name 'John'
+    name { 'John' }
   end
 end
