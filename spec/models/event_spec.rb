@@ -7,9 +7,8 @@ RSpec.describe Event, type: :model do
     it { should have_many(:event_attendances) }
   end
   describe 'Validations' do
-
     let(:creator) do
-      User.create(name: "'creator")
+      User.create(name: 'creator')
     end
     subject do
       described_class.new(description: 'description', date: Date.today, creator_id: creator.id)

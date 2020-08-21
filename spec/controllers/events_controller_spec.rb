@@ -8,7 +8,7 @@ RSpec.describe EventsController, type: :controller do
     @creator_id = @user.id
   end
   describe 'POST create ' do
-    let(:event_created) {{ description: "description", date: Date.today, creator_id: @creator_id}}
+    let(:event_created) { { description: 'description', date: Date.today, creator_id: @creator_id } }
     subject { post :create, params: { event: event_created } }
 
     it 'redirects to the action show' do
@@ -20,41 +20,39 @@ RSpec.describe EventsController, type: :controller do
       expect(response).to have_http_status(:found)
     end
 
-    it "sets the correct flash notice" do
+    it 'sets the correct flash notice' do
       post :create, params: { event: event_created }
       expect(response.code).to eq '302'
       expect(response).to have_http_status(:found)
-      expect(flash[:notice]).to eq "Event was successfully created."
+      expect(flash[:notice]).to eq 'Event was successfully created.'
     end
   end
 
   describe 'GET index ' do
-
     before :each do
-      @event = Event.create(description: "description", date: Date.today, creator_id: @creator_id)
+      @event = Event.create(description: 'description', date: Date.today, creator_id: @creator_id)
       @params = { id: @event.id }
     end
 
-    it "returns a successful response" do
+    it 'returns a successful response' do
       get :index
       expect(response).to be_successful
     end
 
-    it "assigns @events" do
+    it 'assigns @events' do
       get :index
       expect(assigns(:events)).to eq([@event])
     end
 
-    it "renders the index template" do
+    it 'renders the index template' do
       get :index
-      expect(response).to render_template("index")
+      expect(response).to render_template('index')
     end
   end
 
   describe 'GET show ' do
-
     before :each do
-      @event = Event.create(description: "description", date: Date.today, creator_id: @creator_id)
+      @event = Event.create(description: 'description', date: Date.today, creator_id: @creator_id)
       @params = { id: @event.id }
     end
 
