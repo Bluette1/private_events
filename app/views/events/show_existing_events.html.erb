@@ -1,5 +1,5 @@
 <div>
-<h5>Add Attended Event</h5><br/>
+<h5>Attend Event(s)</h5><br/>
 <%= form_with model: @event do |f| %>
 
  <% @events.each do |event| %> 
@@ -9,7 +9,8 @@
 <br/>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit %> &nbsp;&nbsp;
+    <%= link_to 'Cancel', events_path %>
   </div>
 
 <% end %>

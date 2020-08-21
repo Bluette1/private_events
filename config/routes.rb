@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   delete '/sign_out', to: 'sessions#destroy'
   get '/sign_up', to: 'users#new'
   resources :events, only: %i[new create show index]
-  get '/events_attended', to: 'events#attended_event'
-  post '/events_attended', to: 'events#add_attended_event'
+  get '/attend_events', to: 'events#show_existing_events'
+  post '/attend_events', to: 'events#attend_events'
 end

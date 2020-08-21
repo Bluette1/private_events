@@ -12,7 +12,7 @@
     <% end %>
   </p>
   <p>
-    <strong>Events Attended:</strong><br/>
+    <strong>You have registered for the following events:</strong><br/>
     <% @user.attended_events.each do |event| %>
       <li>
         <%= link_to event.description, event_path(event) %>
@@ -20,7 +20,7 @@
     <% end %>
   </p>
   <p>
-    <strong>Upcoming Events Attended:</strong><br/>
+    <strong>You have registered for the following <i>Upcoming</i> events:</strong><br/>
     <% @upcoming_events.each do |event| %>
       <li>
         <%= link_to event.description, event_path(event) %>
@@ -28,7 +28,7 @@
     <% end %>
   </p>
   <p>
-    <strong>Previous Events Attended:</strong><br/>
+    <strong>You have registered for the following <i>Previous</i> events:</strong><br/>
     <% @previous_events.each do |event| %>
       <li>
         <%= link_to event.description, event_path(event) %>

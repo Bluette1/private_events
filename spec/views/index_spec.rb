@@ -4,7 +4,7 @@ require 'support/authentication_helper'
 RSpec.describe "events/index", type: :view do
     before :each do
     
-            @creator_id = (User.create(name: "'creator")).id
+        @creator_id = (User.create(name: "creator")).id
         event_one = Event.create!(description: "description_one", date: Date.today, creator_id: @creator_id)
         event_two = Event.create!(description: "description_two", date: Date.today, creator_id: @creator_id)
         assign(:events, [
