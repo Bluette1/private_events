@@ -7,7 +7,7 @@ RSpec.describe Event, type: :model do
     it { should have_many(:event_attendances) }
   end
   describe 'Validations' do
-    # creator = User.create(name:"'creator")
+
     let(:creator) do
       User.create(name: "'creator")
     end
