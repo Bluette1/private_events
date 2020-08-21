@@ -1,4 +1,4 @@
-def html
+def index_html
   '<div>
   <h5>Events</h5>
   <table>
