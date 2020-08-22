@@ -43,8 +43,8 @@ jobs:
         with:
           ruby-version: 2.6.x
       - name: Install Sqlite
-      run: |
-        sudo apt-get install libsqlite3-dev
+        run: |
+          sudo apt-get install libsqlite3-dev
       - name: Install Test dependencies
         env:
         RAILS_ENV: test
