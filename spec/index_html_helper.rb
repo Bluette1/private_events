@@ -1,5 +1,5 @@
 def index_html
-  '<div>
+  %(<div>
   <h5>Events</h5>
   <table>
     <thead>
@@ -12,12 +12,12 @@ def index_html
     <tbody>
         <tr>
           <td>description_one</td>
-          <td>2020-08-21</td>
+          <td>#{Date.today}</td>
           <td><a href="/events/1">Show</a></td>
         </tr>
         <tr>
           <td>description_two</td>
-          <td>2020-08-21</td>
+          <td>#{Date.today}</td>
           <td><a href="/events/2">Show</a></td>
         </tr>
     </tbody>
@@ -35,12 +35,12 @@ def index_html
     <tbody>
         <tr>
           <td>description_one</td>
-          <td>2020-08-21</td>
+          <td>#{Date.today}</td>
           <td><a href="/events/1">Show</a></td>
         </tr>
         <tr>
           <td>description_two</td>
-          <td>2020-08-21</td>
+          <td>#{Date.today}</td>
           <td><a href="/events/2">Show</a></td>
         </tr>
     </tbody>
@@ -59,5 +59,5 @@ def index_html
     </tbody>
   </table>
 </div>
-'
+)
 end
