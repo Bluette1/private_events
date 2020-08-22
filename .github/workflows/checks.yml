@@ -1,4 +1,4 @@
-name: Linters
+name: CI Checks
 
 on: pull_request
 

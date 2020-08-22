@@ -1,18 +1,15 @@
 <div>
-<h5>Attend Event(s)</h5><br/>
-<%= form_with model: @event do |f| %>
-
- <% @events.each do |event| %> 
-  <%= check_box_tag "event_ids[]", event.id, false %> 
-  <%= event.description %> <%= event.date %><br/>
-<% end %>
-<br/>
-
-  <div class="actions">
-    <%= f.submit %> &nbsp;&nbsp;
-    <%= link_to 'Cancel', events_path %>
-  </div>
-
-<% end %>
-
+  <h5>Attend Event(s)</h5>
+  <br/>
+  <%= form_with model: @event do |f| %>
+    <% @events.each do |event| %>
+      <%= check_box_tag "event_ids[]", event.id, false %>
+      <%= event.description %> <%= event.date %><br/>
+    <% end %>
+    <br/>
+    <div class="actions">
+      <%= f.submit %> &nbsp;&nbsp;
+      <%= link_to 'Cancel', events_path %>
+    </div>
+  <% end %>
 </div>

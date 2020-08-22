@@ -13,7 +13,7 @@
   </p>
   <p>
     <strong>You have registered for the following events:</strong><br/>
-    <% @user.attended_events.each do |event| %>
+    <% @attended_events.each do |event| %>
       <li>
         <%= link_to event.description, event_path(event) %>
       </li>
