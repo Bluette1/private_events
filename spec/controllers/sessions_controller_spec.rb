@@ -9,7 +9,7 @@ RSpec.describe SessionsController, type: :controller do
       User.create(params)
     end
 
-    it ' logs in successfully and redirects to the  show' do
+    it 'logs in successfully and redirects to the show' do
       post :create, params: params
 
       expect(response).to redirect_to(user_url(assigns(:user).id))

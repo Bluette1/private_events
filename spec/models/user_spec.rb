@@ -12,6 +12,8 @@ RSpec.describe User, type: :model do
 
     it { should validate_presence_of(:name) }
 
+    it { should validate_uniqueness_of(:name) }
+
     it 'is not valid without the minimum length of name' do
       subject.name = 'n'
       expect(subject).to_not be_valid

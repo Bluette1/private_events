@@ -20,6 +20,8 @@ RSpec.describe Event, type: :model do
 
     it { should validate_presence_of(:description) }
 
+    it { should validate_uniqueness_of(:description) }
+
     it 'is not valid without the minimum length of description' do
       subject.description = 'de'
       expect(subject).to_not be_valid
