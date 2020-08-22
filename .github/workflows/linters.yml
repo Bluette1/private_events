@@ -46,8 +46,6 @@ jobs:
         run: |
           sudo apt-get install libsqlite3-dev
       - name: Install Test dependencies
-        env:
-        RAILS_ENV: test
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
