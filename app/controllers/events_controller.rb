@@ -98,7 +98,10 @@ class EventsController < ApplicationController
   end
 
   def set_current_user
-    redirect_to sign_in_path if current_user.nil?
+    if current_user.nil?
+      session[:previous_url] = request.fullpath unless request.fullpath =~ Regexp.new('/user/')
+      redirect_to sign_in_path
+    end
     @current_user = current_user
   end
 

@@ -18,7 +18,9 @@ class SessionsController < ApplicationController
       if @user
 
         # format.html { redirect_to signed_in_path, notice: 'You have successfully logged in' }
-        format.html { redirect_to user_path(@user), notice: 'You have successfully logged in' }
+        path_url = session[:previous_url] || user_path(@user)
+
+        format.html { redirect_to path_url, notice: 'You have successfully logged in' }
 
         format.json { render @user, status: :'logged in' }
       else
