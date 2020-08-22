@@ -22,6 +22,6 @@ RSpec.describe 'events/show_existing_events', type: :view do
     render template: 'events/show_existing_events.html.erb'
     expect(rendered).to match Regexp.new('description_one')
     expect(rendered).to match Regexp.new('description_two')
-    expect(rendered).to match Regexp.new(Date.today.to_s) 
+    expect(rendered).to match Regexp.new(Date.today.to_s)
   end
 end

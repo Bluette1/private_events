@@ -8,6 +8,5 @@ RSpec.describe 'events/new', type: :view do
 
     render
     expect(response).to render_template('events/new')
-    
   end
 end

@@ -1,4 +1,5 @@
 def show_existing_events_html
+  # rubocop:disable Layout/LineLength
   %(<div>
   <h5>Attend Event(s)</h5>
   <br/>
@@ -13,4 +14,5 @@ def show_existing_events_html
       <a href="/events">Cancel</a>
     </div>
 </form></div>)
+  # rubocop:enable Layout/LineLength
 end

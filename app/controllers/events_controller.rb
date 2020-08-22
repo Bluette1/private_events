@@ -14,7 +14,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @creator = creator
-    @attendees = @event.attendees 
+    @attendees = @event.attendees
   end
 
   # GET /events/new

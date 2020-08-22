@@ -1,5 +1,5 @@
 def event_html
-    %(<div>
+  %(<div>
   <p>
     <strong>Description:</strong>
     description_one
@@ -23,4 +23,4 @@ def event_html
   </p>
   <a href="/events">Back</a>
 </div>)
-  end
+end

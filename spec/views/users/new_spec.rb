@@ -8,6 +8,5 @@ RSpec.describe 'users/new', type: :view do
 
     render
     expect(response).to render_template('users/new')
-    
   end
 end
