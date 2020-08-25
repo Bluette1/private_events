@@ -6,7 +6,7 @@ def event_html
   </p>
   <p>
     <strong>Date:</strong>
-    2020-08-22
+    #{Date.today}
   </p>
   <p>
     <strong>Creator:</strong>

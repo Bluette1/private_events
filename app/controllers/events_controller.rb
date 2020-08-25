@@ -48,7 +48,7 @@ class EventsController < ApplicationController
   def attend_events
     event_ids = params[:event_ids]
     attended_events = event_ids.collect { |id| Event.find(id) }
-    p @current_user
+
     @current_user.attended_events = attended_events
 
     respond_to do |format|
