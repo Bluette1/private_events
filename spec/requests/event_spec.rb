@@ -18,21 +18,6 @@ RSpec.describe 'Event Requests', type: :request do
       get '/events/new'
       expect(response).to redirect_to(sign_in_path)
     end
-
-    it 'retrieves the signup page' do
-      get '/sign_up'
-      expect(response).to be_successful
-      expect(response.code).to eq '200'
-      expect(response).to have_http_status(:ok)
-      expect(response).to render_template('users/new')
-    end
-
-    it 'creates a new user successfully and redirects to the sigin page' do
-      post '/users', params: params
-      expect(response).to redirect_to(user_path(assigns(:user).id))
-      expect(response.code).to eq '302'
-      expect(response).to have_http_status(:found)
-    end
   end
 
   describe 'when user is logged in ' do
@@ -62,6 +47,7 @@ RSpec.describe 'Event Requests', type: :request do
       it 'does not render a different template' do
         get '/events/new'
         expect(response).to_not render_template(:show)
+        expect(response).to render_template(:new)
       end
     end
 
@@ -92,7 +78,7 @@ RSpec.describe 'Event Requests', type: :request do
         expect(response.body).to include(date)
       end
     end
-    describe 'expected results are obtained when user attends events(s)' do
+    describe 'expected results are obtained when user attends event(s)' do
       before :all do
         post '/users', params: params
         post '/sign_in', params: name
@@ -102,40 +88,59 @@ RSpec.describe 'Event Requests', type: :request do
         post '/events', params: { event: other_other_created_event }
       end
 
-      describe ' ' do
-        it 'renders page to attend events' do
-          get '/attend_events'
-          expect(response).to render_template('events/show_existing_events')
-          expect(response).to be_successful
-          expect(response.code).to eq '200'
-          expect(response).to have_http_status(:ok)
-          expect(response.body).to include(description)
-          expect(response.body).to include(other_description)
-          expect(response.body).to include(other_other_description)
-        end
+      it 'renders page to attend events' do
+        get '/attend_events'
+        expect(response).to render_template('events/show_existing_events')
+        expect(response).to be_successful
+        expect(response.code).to eq '200'
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to include(description)
+        expect(response.body).to include(other_description)
+        expect(response.body).to include(other_other_description)
+      end
 
-        it 'adds the correct events that will be attended by the user' do
-          user = User.find_by(name)
-          user_id = user.id
-          events = []
-          existing_events = Event.all
-          events << existing_events.first << existing_events.last
-          post '/attend_events', params: { event_ids: events.map(&:id) }
-          expect(response.code).to eq '302'
-          expect(response).to have_http_status(:found)
-          expect(response).to redirect_to(user_path(user_id))
-          expect(user.attended_events).to eq events
+      it 'adds the correct events that will be attended by the user' do
+        user = User.find_by(name)
+        user_id = user.id
+        events = []
+        existing_events = Event.all
+        events << existing_events.first << existing_events.last
+        post '/attend_events', params: { event_ids: events.map(&:id) }
+        expect(response.code).to eq '302'
+        expect(response).to have_http_status(:found)
+        expect(response).to redirect_to(user_path(user_id))
+        expect(user.attended_events).to eq events
 
-          # renders page to attend events with existing events that ther user has not yet registered to attend
-          get '/attend_events'
-          expect(response).to render_template('events/show_existing_events')
-          expect(response).to be_successful
-          expect(response.code).to eq '200'
-          expect(response).to have_http_status(:ok)
-          expect(response.body).not_to include(description)
-          expect(response.body).to include(other_description)
-          expect(response.body).not_to include(other_other_description)
-        end
+        # renders page to attend events with existing events that ther user has not yet registered to attend
+        get '/attend_events'
+        expect(response).to render_template('events/show_existing_events')
+        expect(response).to be_successful
+        expect(response.code).to eq '200'
+        expect(response).to have_http_status(:ok)
+        expect(response.body).not_to include(description)
+        expect(response.body).to include(other_description)
+        expect(response.body).not_to include(other_other_description)
+      end
+    end
+
+    describe 'renders the show path correctly' do
+      it '/events/{id} path is working correctly' do
+        post '/users', params: params
+        post '/sign_in', params: name
+
+        post '/events', params: { event: created_event }
+
+        user = User.find_by(name)
+        user_id = user.id
+        event_id = Event.where(creator_id: user_id)[0].id
+
+        get "/events/#{event_id}"
+        expect(response).to render_template(:show)
+        expect(response).to be_successful
+        expect(response.code).to eq '200'
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to include(description)
+        expect(response.body).to include(date)
       end
     end
   end
