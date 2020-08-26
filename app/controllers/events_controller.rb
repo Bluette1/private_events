@@ -42,14 +42,14 @@ class EventsController < ApplicationController
   end
 
   def show_existing_events
-    @events = Event.all
+    @events = Event.all.reject { |event| @current_user.attended_events.include?(event) }
   end
 
   def attend_events
     event_ids = params[:event_ids]
     attended_events = event_ids.collect { |id| Event.find(id) }
 
-    @current_user.attended_events = attended_events
+    @current_user.attended_events << attended_events
 
     respond_to do |format|
       if @current_user.save
