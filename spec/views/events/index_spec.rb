@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'view_helpers/index_html_helper'
 
 RSpec.describe 'events/index', type: :view do
   before :each do
@@ -22,8 +21,6 @@ RSpec.describe 'events/index', type: :view do
   it 'render the index view template' do
     render
     expect(response).to render_template('index')
-
-    expect(rendered).to eq index_html
   end
 
   it 'displays both events correctly' do

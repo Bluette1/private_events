@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'view_helpers/show_existing_events_html_helper'
 
 RSpec.describe 'events/show_existing_events', type: :view do
   before :each do
@@ -15,7 +14,6 @@ RSpec.describe 'events/show_existing_events', type: :view do
   it 'render the show_existing_events view template' do
     render
     expect(response).to render_template('show_existing_events')
-    expect(rendered).to eq show_existing_events_html
   end
 
   it 'displays both events correctly' do

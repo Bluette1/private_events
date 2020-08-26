@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'view_helpers/show_event_html_helper'
 
 RSpec.describe 'events/show', type: :view do
   before :each do
@@ -13,7 +12,7 @@ RSpec.describe 'events/show', type: :view do
   it 'render the events/show view template' do
     assign(:event, @event_one)
     render
-    expect(rendered).to eq event_html
+    
     expect(response).to render_template('events/show')
   end
 

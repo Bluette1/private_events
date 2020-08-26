@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'view_helpers/show_user_html_helper'
 
 RSpec.describe 'users/show', type: :view do
   before :each do
@@ -24,7 +23,6 @@ RSpec.describe 'users/show', type: :view do
   end
   it 'render the users/show view template' do
     render
-    expect(rendered).to eq user_html
     expect(response).to render_template('users/show')
   end
 
