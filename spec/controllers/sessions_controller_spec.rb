@@ -13,10 +13,7 @@ RSpec.describe SessionsController, type: :controller do
       post :create, params: params
 
       expect(response).to redirect_to(user_url(assigns(:user).id))
-
       expect(response).to redirect_to("/users/#{assigns(:user).id}")
-
-      expect(response).to redirect_to(user_url(assigns(:user).id))
       expect(flash[:notice]).to eq 'You have successfully logged in'
       expect(response.code).to eq '302'
       expect(response).to have_http_status(:found)

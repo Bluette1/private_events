@@ -26,6 +26,11 @@ RSpec.describe 'User Requests', type: :request do
       expect(response).to have_http_status(:found)
       expect(User.find_by(name: 'new_name')).to_not eq nil
     end
+
+    it 'redirects to the login page if the user is not signed in' do
+      get '/users/1'
+      expect(response).to redirect_to(sign_in_path)
+    end
   end
   describe 'when user is logged in' do
     it 'renders the correct show page' do
