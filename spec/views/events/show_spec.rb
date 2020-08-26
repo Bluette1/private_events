@@ -12,7 +12,7 @@ RSpec.describe 'events/show', type: :view do
   it 'render the events/show view template' do
     assign(:event, @event_one)
     render
-    
+
     expect(response).to render_template('events/show')
   end
 

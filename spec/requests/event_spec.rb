@@ -1,16 +1,16 @@
 require 'rails_helper'
 
-date = '2020-08-25' 
-description = 'My Event' 
-other_description = 'My Other Event' 
-other_date = '2020-08-26' 
-other_other_description =  'My Other Other Event' 
-other_other_date = '2020-08-27' 
-name = { name: 'name' } 
-params = { user: name } 
-created_event = { description: description, date: date } 
-other_created_event= { description: other_description, date: other_date }
-other_other_created_event = { description: other_other_description, date: other_other_date } 
+date = '2020-08-25'
+description = 'My Event'
+other_description = 'My Other Event'
+other_date = '2020-08-26'
+other_other_description = 'My Other Other Event'
+other_other_date = '2020-08-27'
+name = { name: 'name' }
+params = { user: name }
+created_event = { description: description, date: date }
+other_created_event = { description: other_description, date: other_date }
+other_other_created_event = { description: other_other_description, date: other_other_date }
 
 RSpec.describe 'Event Requests', type: :request do
   describe 'when user is not logged in ' do
@@ -93,18 +93,17 @@ RSpec.describe 'Event Requests', type: :request do
       end
     end
     describe 'expected results are obtained when user attends events(s)' do
-      
-      before (:all) do
-    post '/users', params: params
-    post '/sign_in', params: name
-        post '/events', params: {:event => { description: description, date: date }}
-        post '/events', params: { :event => {description: other_description, date: other_date }}
-        post '/events', params: { :event => {description: other_other_description, date: other_other_date}}
+      before :all do
+        post '/users', params: params
+        post '/sign_in', params: name
+
+        post '/events', params: { event: created_event }
+        post '/events', params: { event: other_created_event }
+        post '/events', params: { event: other_other_created_event }
       end
-     
-      describe " " do
+
+      describe ' ' do
         it 'renders page to attend events' do
-          p Event.all
           get '/attend_events'
           expect(response).to render_template('events/show_existing_events')
           expect(response).to be_successful
@@ -114,7 +113,7 @@ RSpec.describe 'Event Requests', type: :request do
           expect(response.body).to include(other_description)
           expect(response.body).to include(other_other_description)
         end
-  
+
         it 'adds the correct events that will be attended by the user' do
           user = User.find_by(name)
           user_id = user.id
@@ -137,7 +136,7 @@ RSpec.describe 'Event Requests', type: :request do
           expect(response.body).to include(other_description)
           expect(response.body).not_to include(other_other_description)
         end
-      end 
+      end
     end
   end
 end
