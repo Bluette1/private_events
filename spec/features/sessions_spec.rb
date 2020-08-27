@@ -37,4 +37,16 @@ RSpec.describe 'Sessions Features', type: :feature do
     click_on 'Submit'
     expect(page).to have_content('Name has already been taken')
   end
+
+  scenario 'successful logout' do
+    visit '/sign_up'
+    expect(page).to have_content('Sign Up')
+    fill_in 'user_name', with: 'Marylene'
+    click_on 'Submit'
+    visit '/sign_in'
+    fill_in 'user_name', with: 'Marylene'
+    click_on 'Submit'
+    click_on 'Sign Out'
+    expect(page).to have_content('You have successfully logged out')
+  end
 end

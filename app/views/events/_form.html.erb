@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_area :description, id: :event_description %>
+    <%= form.text_area :description, id: :event_description, class: 'mb-1 form-control' %>
   </div>
     <div class="field">
     <%= form.label :date %>
-    <%= form.date_field :date %>
+    <%= form.date_field :date, id: :event_date %>
   </div>
   <br/>
   <div class="actions">
