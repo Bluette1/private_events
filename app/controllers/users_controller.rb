@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   def show
     @upcoming_events = @current_user.upcoming_events
     @previous_events = @current_user.previous_events
+    @attended_events = @user.attended_events
   end
 
   # GET /users/new
@@ -71,7 +72,16 @@ class UsersController < ApplicationController
   end
 
   def set_current_user
+    if current_user.nil?
+      session[:previous_url] = request.fullpath unless request.fullpath =~ Regexp.new('/user/')
+      redirect_to sign_in_path
+    end
     @current_user = current_user
+  end
+
+  def current_user
+    @current_user ||= session[:current_user_id] &&
+                      User.find_by(id: session[:current_user_id])
   end
 
   # Only allow a list of trusted parameters through.

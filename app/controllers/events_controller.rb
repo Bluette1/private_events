@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
-  before_action :set_current_user, only: %i[create show attended_event add_attended_event index new]
+  before_action :set_current_user, only: %i[create show attend_events show_existing_events index new]
 
   # GET /events
   # GET /events.json
@@ -14,6 +14,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @creator = creator
+    @attendees = @event.attendees
   end
 
   # GET /events/new
@@ -40,15 +41,16 @@ class EventsController < ApplicationController
     end
   end
 
-  def attended_event
-    @events = Event.all
+  def show_existing_events
+    @events = Event.all.reject { |event| @current_user.attended_events.include?(event) }
   end
 
-  def add_attended_event
+  def attend_events
     event_ids = params[:event_ids]
     attended_events = event_ids.collect { |id| Event.find(id) }
-    @current_user.attended_events = attended_events
-    # @current_user.save
+
+    @current_user.attended_events << attended_events
+
     respond_to do |format|
       if @current_user.save
         format.html { redirect_to user_path(@current_user), notice: 'Attended events were successfully added.' }
@@ -96,8 +98,16 @@ class EventsController < ApplicationController
   end
 
   def set_current_user
-    redirect_to sign_in_path if current_user.nil?
+    if current_user.nil?
+      session[:previous_url] = request.fullpath unless request.fullpath =~ Regexp.new('/user/')
+      redirect_to sign_in_path
+    end
     @current_user = current_user
+  end
+
+  def current_user
+    @current_user ||= session[:current_user_id] &&
+                      User.find_by(id: session[:current_user_id])
   end
 
   # Only allow a list of trusted parameters through.
