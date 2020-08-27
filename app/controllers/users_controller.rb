@@ -11,8 +11,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @upcoming_events = @current_user.upcoming_events
-    @previous_events = @current_user.previous_events
+    @upcoming_events = @user.upcoming_events
+    @previous_events = @user.previous_events
     @attended_events = @user.attended_events
   end
 
@@ -69,6 +69,9 @@ class UsersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find(params[:id])
+  rescue StandardError
+    flash[:notice] = "Could find user with id #{params[:id]}"
+    redirect_to root_path
   end
 
   def set_current_user
